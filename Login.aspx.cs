@@ -320,10 +320,12 @@ namespace SITConnect_204826E
         {
             string fromaddress = "SITConnect <herobrineblaze@gmail.com>";
             string str = null;
+            string s = "herobrineblaze@gmail.com";
+            string p = "steveblaze";
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("herobrineblaze@gmail.com", "steveblaze"),
+                Credentials = new NetworkCredential(s, p),
                 EnableSsl = true
             };
             var mailMessage = new MailMessage

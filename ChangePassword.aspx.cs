@@ -43,11 +43,12 @@ namespace SITConnect_204826E
             string old = current.Text.ToString().Trim();
             string newPwd = newTB.Text.ToString().Trim();
             string status = checkPassword(newTB.Text);
+            
             SHA512Managed hashing = new SHA512Managed();
 
             string dbHash = getDBHash(em);
             string dbSalt = getDBSalt(em);
-            pwdChecker.Text = status;
+            
             try
             {
                 if (dbSalt != null && dbSalt.Length > 0 && dbHash != null && dbHash.Length > 0 && status == "")
@@ -177,45 +178,42 @@ namespace SITConnect_204826E
             finally { connection.Close(); }
             return s;
         }
-        private string checkPassword(string newpwd)
-        {
-            string status = "";
+        private void checkPassword(string newpwd)
+        {            
             if (newpwd.Length == 0)
             {
-                status = "Field is required";
+                pwdChecker.Text = "Field is required";
                 pwdChecker.ForeColor = Color.Red;
             }
             else if (newpwd.Length < 12)
             {
-                status = "Password length must be at least 12 characters";
+                pwdChecker.Text = "Password length must be at least 12 characters";
                 pwdChecker.ForeColor = Color.Red;
             }
             else if (Regex.IsMatch(newpwd, "[a-z]") == false)
             {
-                status = "Password require at least 1 lowercase";
+                pwdChecker.Text = "Password require at least 1 lowercase";
                 pwdChecker.ForeColor = Color.Red;
             }
             else if (Regex.IsMatch(newpwd, "[A-Z]") == false)
             {
-                status = "Password require at least 1 uppercase";
+                pwdChecker.Text = "Password require at least 1 uppercase";
                 pwdChecker.ForeColor = Color.Red;
             }
             else if (Regex.IsMatch(newpwd, "[0-9]") == false)
             {
-                status = "Password require at least 1 number";
+                pwdChecker.Text = "Password require at least 1 number";
                 pwdChecker.ForeColor = Color.Red;
             }
             else if (Regex.IsMatch(newpwd, "[^a-zA-Z0-9]") == false)
             {
-                status = "Password require at least 1 special character";
+                pwdChecker.Text = "Password require at least 1 special character";
                 pwdChecker.ForeColor = Color.Red;
             }
             else
             {
-                status = "";
-            }
-
-            return status;
+                pwdChecker.Text = "";
+            }            
         }
     }
 }
