@@ -42,7 +42,7 @@ namespace SITConnect_204826E
             string em = Session["LoggedIn"].ToString();
             string old = current.Text.ToString().Trim();
             string newPwd = newTB.Text.ToString().Trim();
-            string status = checkPassword(newTB.Text);
+            checkPassword(newTB.Text);
             
             SHA512Managed hashing = new SHA512Managed();
 

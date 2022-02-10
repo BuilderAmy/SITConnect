@@ -72,7 +72,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Button ID="resetbtn" runat="server" BackColor="Black" Font-Size="14pt" ForeColor="White" Text="Login" Width="100%" OnClick="loginbtn_Click" />
+                        <asp:Button ID="resetbtn" runat="server" BackColor="Black" Font-Size="14pt" ForeColor="White" Text="Change Password" Width="100%" OnClick="loginbtn_Click" />
                     </td>
                 </tr>
             </table>
