@@ -51,7 +51,7 @@ namespace SITConnect_204826E
             
             try
             {
-                if (dbSalt != null && dbSalt.Length > 0 && dbHash != null && dbHash.Length > 0 && status == "")
+                if (dbSalt != null && dbSalt.Length > 0 && dbHash != null && dbHash.Length > 0 && pwdChecker.Text == "")
                 {
                     string pwdWithSalt = old + dbSalt;
                     byte[] hashWithSalt = hashing.ComputeHash(Encoding.UTF8.GetBytes(pwdWithSalt));
@@ -60,7 +60,6 @@ namespace SITConnect_204826E
                     {
                         RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
                         byte[] saltByte = new byte[8];
-
                         rng.GetBytes(saltByte);
                         salt = Convert.ToBase64String(saltByte);
 
@@ -68,9 +67,9 @@ namespace SITConnect_204826E
 
                         string newpwdWithSalt = newPwd + salt;
                         byte[] plainHash = hashing.ComputeHash(Encoding.UTF8.GetBytes(newPwd));
-                        byte[] newhashWithSalt = hashing.ComputeHash(Encoding.UTF8.GetBytes(pwdWithSalt));
+                        byte[] newhashWithSalt = hashing.ComputeHash(Encoding.UTF8.GetBytes(newpwdWithSalt));
 
-                        finalHash = Convert.ToBase64String(hashWithSalt);
+                        finalHash = Convert.ToBase64String(newhashWithSalt);
                         updPwd();
                     }
                 }
